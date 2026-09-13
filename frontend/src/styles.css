@@ -10,24 +10,23 @@
   --teal-color: #2c6975;
   --mint-color: #68b2a0;
   --pale-green-color: #cde0c9;
-  --accent-color: #c45c3c;
-  --accent-dark: #9f452d;
-  --teal-color: #3f7566;
-  --bs-primary: #c45c3c;
-  --bs-primary-rgb: 196, 92, 60;
+  --accent-color: #2c6975;
+  --accent-dark: #21515b;
+  --bs-primary: #2c6975;
+  --bs-primary-rgb: 44, 105, 117;
 }
 
 [data-bs-theme="dark"] {
   --bg-color: #18252a;
   --text-color: #edf1ed;
   --card-bg: #22343a;
-  --accent-color: #e58a62;
-  --accent-dark: #f0a47e;
+  --accent-color: #68b2a0;
+  --accent-dark: #9acdbd;
   --teal-color: #68b2a0;
   --mint-color: #2c6975;
   --pale-green-color: #cde0c9;
-  --bs-primary: #e58a62;
-  --bs-primary-rgb: 229, 138, 98;
+  --bs-primary: #68b2a0;
+  --bs-primary-rgb: 104, 178, 160;
 }
 
 body {
