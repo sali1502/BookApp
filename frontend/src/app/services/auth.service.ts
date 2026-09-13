@@ -7,7 +7,7 @@ import { AuthResponse, LoginRequest, RegisterRequest } from '../models/user.mode
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/auth';
+  private apiUrl = 'http://localhost:5062/api/auth';
   private tokenKey = 'bookapp_jwt_token';
   private usernameKey = 'bookapp_username';
 

@@ -7,7 +7,7 @@ import { Quote, CreateQuoteRequest, UpdateQuoteRequest } from '../models/quote.m
   providedIn: 'root'
 })
 export class QuoteService {
-  private apiUrl = 'http://localhost:5000/api/quotes';
+  private apiUrl = 'http://localhost:5062/api/quotes';
 
   constructor(private http: HttpClient) {}
 
