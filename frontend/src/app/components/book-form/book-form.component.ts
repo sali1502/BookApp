@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
@@ -19,12 +19,10 @@ export class BookFormComponent implements OnInit {
   publishDate = '';
   isLoading = false;
   errorMessage = '';
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
 
-  constructor(
-    private bookService: BookService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -33,7 +31,7 @@ export class BookFormComponent implements OnInit {
       this.bookId = +idParam;
       this.loadBook(this.bookId);
     } else {
-      // Default date to today
+      // Use today's date when creating a new book.
       this.publishDate = new Date().toISOString().substring(0, 10);
     }
   }
