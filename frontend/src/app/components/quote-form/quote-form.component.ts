@@ -60,8 +60,8 @@ export class QuoteFormComponent implements OnInit {
     if (this.isEditMode && this.quoteId !== null) {
       this.quoteService.updateQuote(this.quoteId, payload).subscribe({
         next: () => this.router.navigate(['/quotes']),
-        error: () => {
-          this.errorMessage = 'Gick inte att uppdatera citatet.';
+        error: (error) => {
+          this.errorMessage = error.error?.message || 'Gick inte att uppdatera citatet.';
           this.isLoading = false;
         }
       });
@@ -70,8 +70,8 @@ export class QuoteFormComponent implements OnInit {
 
     this.quoteService.createQuote(payload).subscribe({
       next: () => this.router.navigate(['/quotes']),
-      error: () => {
-        this.errorMessage = 'Gick inte att skapa citatet.';
+      error: (error) => {
+        this.errorMessage = error.error?.message || 'Gick inte att skapa citatet.';
         this.isLoading = false;
       }
     });
