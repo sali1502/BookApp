@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -15,11 +15,11 @@ export class NavbarComponent implements OnInit {
   currentUser$;
   isDarkMode$;
   isMenuCollapsed = true;
+  private readonly router: Router = inject(Router);
 
   constructor(
     public authService: AuthService,
-    public themeService: ThemeService,
-    private router: Router
+    public themeService: ThemeService
   ) {
     this.currentUser$ = authService.currentUser$;
     this.isDarkMode$ = themeService.isDarkMode$;

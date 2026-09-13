@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute, RouterModule } from '@angular/router';
@@ -19,10 +19,10 @@ export class LoginComponent {
   successMessage = '';
   isLoading = false;
   returnUrl = '/';
+  private readonly router = inject(Router);
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private route: ActivatedRoute
   ) {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
