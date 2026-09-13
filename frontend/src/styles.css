@@ -7,6 +7,9 @@
   --bg-color: #f6f1e9;
   --text-color: #243342;
   --card-bg: #ffffff;
+  --teal-color: #2c6975;
+  --mint-color: #68b2a0;
+  --pale-green-color: #cde0c9;
   --accent-color: #c45c3c;
   --accent-dark: #9f452d;
   --teal-color: #3f7566;
@@ -20,7 +23,9 @@
   --card-bg: #22343a;
   --accent-color: #e58a62;
   --accent-dark: #f0a47e;
-  --teal-color: #7db5a2;
+  --teal-color: #68b2a0;
+  --mint-color: #2c6975;
+  --pale-green-color: #cde0c9;
   --bs-primary: #e58a62;
   --bs-primary-rgb: 229, 138, 98;
 }

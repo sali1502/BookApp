@@ -1,0 +1,19 @@
+.status-page {
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+}
+
+.status-mark {
+  color: var(--teal-color);
+  font-size: clamp(5rem, 18vw, 10rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.eyebrow {
+  color: var(--teal-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

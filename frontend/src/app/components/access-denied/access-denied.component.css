@@ -1,0 +1,24 @@
+.status-page {
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+}
+
+.status-icon {
+  align-items: center;
+  background: var(--mint-color);
+  border-radius: 50%;
+  color: var(--teal-color);
+  display: inline-flex;
+  font-size: 2rem;
+  height: 5rem;
+  justify-content: center;
+  width: 5rem;
+}
+
+.eyebrow {
+  color: var(--teal-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

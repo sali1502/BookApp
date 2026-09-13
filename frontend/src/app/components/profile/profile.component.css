@@ -1,0 +1,27 @@
+.profile-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--mint-color);
+  border-radius: 1rem;
+  padding: 3rem 2rem;
+  box-shadow: 0 1rem 2rem rgba(44, 105, 117, 0.12);
+}
+
+.profile-avatar {
+  align-items: center;
+  background: var(--teal-color);
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  font-size: 2rem;
+  height: 5rem;
+  justify-content: center;
+  width: 5rem;
+}
+
+.eyebrow {
+  color: var(--teal-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

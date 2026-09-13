@@ -33,8 +33,20 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'profile',
+    loadComponent: () => import('./components/profile/profile.component').then(m => m.ProfileComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'access-denied',
+    loadComponent: () => import('./components/access-denied/access-denied.component').then(m => m.AccessDeniedComponent)
+  },
+  {
     path: 'login',
     loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
   },
-  { path: '**', redirectTo: '' }
+  {
+    path: '**',
+    loadComponent: () => import('./components/not-found/not-found.component').then(m => m.NotFoundComponent)
+  }
 ];
