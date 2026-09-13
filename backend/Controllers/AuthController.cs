@@ -9,10 +9,12 @@ namespace Backend.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
+    private readonly IConfiguration _configuration;
 
-    public AuthController(IAuthService authService)
+    public AuthController(IAuthService authService, IConfiguration configuration)
     {
         _authService = authService;
+        _configuration = configuration;
     }
 
     [HttpPost("register")]
@@ -60,11 +62,15 @@ public class AuthController : ControllerBase
 
     private void SetAuthCookie(string token)
     {
+        var secure = bool.Parse(_configuration["AuthCookie:Secure"] ?? "false");
+        var sameSite = Enum.Parse<SameSiteMode>(
+            _configuration["AuthCookie:SameSite"] ?? nameof(SameSiteMode.Lax));
+
         Response.Cookies.Append("bookapp_auth", token, new CookieOptions
         {
             HttpOnly = true,
-            SameSite = SameSiteMode.Lax,
-            Secure = false,
+            SameSite = sameSite,
+            Secure = secure,
             Expires = DateTimeOffset.UtcNow.AddDays(7),
             IsEssential = true
         });
