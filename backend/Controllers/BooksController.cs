@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Backend.Data;
 using Backend.DTOs;
 using Backend.Models;
@@ -18,6 +19,9 @@ public class BooksController : ControllerBase
     {
         _context = context;
     }
+
+    private int CurrentUserId =>
+        int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
@@ -44,7 +48,7 @@ public class BooksController : ControllerBase
             Title = dto.Title,
             Author = dto.Author,
             PublishDate = dto.PublishDate,
-            UserId = 1
+            UserId = CurrentUserId
         };
 
         _context.Books.Add(book);

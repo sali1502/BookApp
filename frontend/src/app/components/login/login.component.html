@@ -1,0 +1,71 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4 p-sm-5">
+          <div class="text-center mb-4">
+            <i class="fa-solid fa-user-lock text-primary display-4 mb-2"></i>
+            <h3 class="fw-bold">{{ isRegisterMode ? 'Skapa konto' : 'Logga in' }}</h3>
+            <p class="text-muted">
+              {{ isRegisterMode ? 'Registrera dig för att hantera dina böcker och citat.' : 'Välkommen tillbaka! Ange dina uppgifter nedan.' }}
+            </p>
+          </div>
+
+          <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+            <i class="fa-solid fa-circle-exclamation me-2"></i> {{ errorMessage }}
+          </div>
+
+          <div class="alert alert-success" *ngIf="successMessage" role="alert">
+            <i class="fa-solid fa-circle-check me-2"></i> {{ successMessage }}
+          </div>
+
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="username" class="form-label font-weight-bold">Användarnamn</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                <input
+                  type="text"
+                  id="username"
+                  class="form-control"
+                  [(ngModel)]="username"
+                  name="username"
+                  placeholder="Ange användarnamn"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="form-label font-weight-bold">Lösenord</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  [(ngModel)]="password"
+                  name="password"
+                  placeholder="Ange lösenord"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 mb-3" [disabled]="isLoading">
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+              <i class="fa-solid" [class.fa-right-to-bracket]="!isRegisterMode" [class.fa-user-plus]="isRegisterMode" *ngIf="!isLoading"></i>
+              {{ isRegisterMode ? ' Registrera dig' : ' Logga in' }}
+            </button>
+          </form>
+
+          <div class="text-center mt-3">
+            <button class="btn btn-link text-decoration-none" (click)="toggleMode()">
+              {{ isRegisterMode ? 'Har du redan ett konto? Logga in' : 'Har du inget konto? Skapa ett här' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

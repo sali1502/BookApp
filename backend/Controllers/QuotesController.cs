@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Backend.Data;
 using Backend.DTOs;
 using Backend.Models;
@@ -19,17 +20,20 @@ public class QuotesController : ControllerBase
         _context = context;
     }
 
+    private int CurrentUserId =>
+        int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Quote>>> GetQuotes()
     {
-        return await _context.Quotes.ToListAsync();
+        return await _context.Quotes.Where(q => q.UserId == CurrentUserId).ToListAsync();
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Quote>> GetQuote(int id)
     {
         var quote = await _context.Quotes.FindAsync(id);
-        if (quote == null)
+        if (quote == null || quote.UserId != CurrentUserId)
         {
             return NotFound();
         }
@@ -43,7 +47,7 @@ public class QuotesController : ControllerBase
         {
             Text = dto.Text,
             Author = dto.Author,
-            UserId = 1
+            UserId = CurrentUserId
         };
 
         _context.Quotes.Add(quote);
@@ -56,7 +60,7 @@ public class QuotesController : ControllerBase
     public async Task<IActionResult> UpdateQuote(int id, [FromBody] UpdateQuoteDto dto)
     {
         var quote = await _context.Quotes.FindAsync(id);
-        if (quote == null)
+        if (quote == null || quote.UserId != CurrentUserId)
         {
             return NotFound();
         }
@@ -72,7 +76,7 @@ public class QuotesController : ControllerBase
     public async Task<IActionResult> DeleteQuote(int id)
     {
         var quote = await _context.Quotes.FindAsync(id);
-        if (quote == null)
+        if (quote == null || quote.UserId != CurrentUserId)
         {
             return NotFound();
         }

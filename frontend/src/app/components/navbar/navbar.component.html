@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
+      <i class="fa-solid fa-book-open fs-4"></i>
+      <span class="fw-bold">Bok & Citat</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleMenu()"
+      aria-controls="navbarNav"
+      [attr.aria-expanded]="!isMenuCollapsed"
+      aria-label="Växla navigering"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" [class.show]="!isMenuCollapsed" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="authService.isLoggedIn()">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMenuCollapsed = true">
+            <i class="fa-solid fa-list me-1"></i> Böcker
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/quotes" routerLinkActive="active" (click)="isMenuCollapsed = true">
+            <i class="fa-solid fa-quote-right me-1"></i> Mina Citat
+          </a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-3 ms-auto mt-2 mt-lg-0">
+        <!-- Dark / Light mode toggle -->
+        <button
+          class="btn btn-outline-light rounded-circle d-flex align-items-center justify-content-center"
+          style="width: 40px; height: 40px;"
+          (click)="toggleTheme()"
+          [title]="(isDarkMode$ | async) ? 'Växla till ljust läge' : 'Växla till mörkt läge'"
+        >
+          <i class="fa-solid" [class.fa-sun]="isDarkMode$ | async" [class.fa-moon]="!(isDarkMode$ | async)"></i>
+        </button>
+
+        <ng-container *ngIf="currentUser$ | async as username; else loginBtn">
+          <span class="text-light d-flex align-items-center gap-1">
+            <i class="fa-solid fa-user-circle"></i> {{ username }}
+          </span>
+          <button class="btn btn-outline-light btn-sm" (click)="logout()">
+            <i class="fa-solid fa-right-from-bracket me-1"></i> Logga ut
+          </button>
+        </ng-container>
+
+        <ng-template #loginBtn>
+          <a class="btn btn-light btn-sm" routerLink="/login" *ngIf="!authService.isLoggedIn()">
+            <i class="fa-solid fa-right-to-bracket me-1"></i> Logga in
+          </a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>

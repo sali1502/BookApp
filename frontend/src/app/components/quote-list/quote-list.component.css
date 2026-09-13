@@ -1,0 +1,7 @@
+.border-dashed {
+  border: 2px dashed #dee2e6 !important;
+}
+
+.quote-content {
+  flex-grow: 1;
+}
