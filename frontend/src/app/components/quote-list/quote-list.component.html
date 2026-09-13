@@ -4,45 +4,9 @@
       <h2 class="fw-bold mb-1"><i class="fa-solid fa-quote-left text-primary me-2"></i>Mina Citat</h2>
       <p class="text-muted mb-0">Samling av mina favoritcitat och klokheter.</p>
     </div>
-    <button (click)="openAddForm()" class="btn btn-primary d-flex align-items-center gap-2" *ngIf="!showForm">
+    <a routerLink="/quotes/add" class="btn btn-primary d-flex align-items-center gap-2">
       <i class="fa-solid fa-plus"></i> Lägg till citat
-    </button>
-  </div>
-
-  <!-- Form for Adding / Editing Quote -->
-  <div class="card shadow-sm border-0 mb-4" *ngIf="showForm">
-    <div class="card-body p-4">
-      <h4 class="fw-bold mb-3">
-        <i class="fa-solid" [class.fa-plus-circle]="!editingQuoteId" [class.fa-pen-to-square]="editingQuoteId"></i>
-        {{ editingQuoteId ? 'Redigera citat' : 'Lägg till nytt citat' }}
-      </h4>
-      <div class="mb-3">
-        <label for="quoteText" class="form-label fw-bold">Citat</label>
-        <textarea
-          id="quoteText"
-          class="form-control"
-          rows="3"
-          [(ngModel)]="text"
-          placeholder="Ange citatet..."
-        ></textarea>
-      </div>
-      <div class="mb-3">
-        <label for="quoteAuthor" class="form-label fw-bold">Upphovsperson / Författare</label>
-        <input
-          type="text"
-          id="quoteAuthor"
-          class="form-control"
-          [(ngModel)]="author"
-          placeholder="T.ex. Albert Einstein"
-        />
-      </div>
-      <div class="d-flex justify-content-end gap-2">
-        <button class="btn btn-secondary" (click)="cancelForm()">Avbryt</button>
-        <button class="btn btn-primary" (click)="saveQuote()">
-          <i class="fa-solid fa-floppy-disk me-1"></i> Spara citat
-        </button>
-      </div>
-    </div>
+    </a>
   </div>
 
   <div *ngIf="isLoading" class="text-center my-5">
@@ -75,9 +39,9 @@
           </blockquote>
 
           <div class="pt-3 border-top d-flex justify-content-end gap-2">
-            <button (click)="openEditForm(quote)" class="btn btn-outline-primary btn-sm">
+            <a [routerLink]="['/quotes/edit', quote.id]" class="btn btn-outline-primary btn-sm">
               <i class="fa-solid fa-pen-to-square me-1"></i> Redigera
-            </button>
+            </a>
             <button (click)="deleteQuote(quote.id)" class="btn btn-outline-danger btn-sm">
               <i class="fa-solid fa-trash me-1"></i> Radera
             </button>

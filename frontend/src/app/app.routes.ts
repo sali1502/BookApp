@@ -23,6 +23,16 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'quotes/add',
+    loadComponent: () => import('./components/quote-form/quote-form.component').then(m => m.QuoteFormComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'quotes/edit/:id',
+    loadComponent: () => import('./components/quote-form/quote-form.component').then(m => m.QuoteFormComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: 'login',
     loadComponent: () => import('./components/login/login.component').then(m => m.LoginComponent)
   },
