@@ -43,6 +43,12 @@ public class QuotesController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Quote>> CreateQuote([FromBody] CreateQuoteDto dto)
     {
+        var quoteCount = await _context.Quotes.CountAsync(quote => quote.UserId == CurrentUserId);
+        if (quoteCount >= 5)
+        {
+            return BadRequest(new { message = "Du kan spara högst 5 citat." });
+        }
+
         var quote = new Quote
         {
             Text = dto.Text,

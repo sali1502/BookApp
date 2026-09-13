@@ -26,13 +26,16 @@ public class BooksController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
     {
-        return await _context.Books.ToListAsync();
+        return await _context.Books
+            .Where(book => book.UserId == CurrentUserId)
+            .ToListAsync();
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Book>> GetBook(int id)
     {
-        var book = await _context.Books.FindAsync(id);
+        var book = await _context.Books
+            .SingleOrDefaultAsync(candidate => candidate.Id == id && candidate.UserId == CurrentUserId);
         if (book == null)
         {
             return NotFound();
@@ -60,7 +63,8 @@ public class BooksController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateBook(int id, [FromBody] UpdateBookDto dto)
     {
-        var book = await _context.Books.FindAsync(id);
+        var book = await _context.Books
+            .SingleOrDefaultAsync(candidate => candidate.Id == id && candidate.UserId == CurrentUserId);
         if (book == null)
         {
             return NotFound();
@@ -77,7 +81,8 @@ public class BooksController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteBook(int id)
     {
-        var book = await _context.Books.FindAsync(id);
+        var book = await _context.Books
+            .SingleOrDefaultAsync(candidate => candidate.Id == id && candidate.UserId == CurrentUserId);
         if (book == null)
         {
             return NotFound();
