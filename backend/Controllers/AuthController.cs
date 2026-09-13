@@ -29,7 +29,8 @@ public class AuthController : ControllerBase
             return BadRequest(new { message = "Användarnamnet upptaget." });
         }
 
-        return Ok(result);
+        SetAuthCookie(result.Token);
+        return Ok(new { username = result.Username });
     }
 
     [HttpPost("login")]
@@ -46,6 +47,26 @@ public class AuthController : ControllerBase
             return Unauthorized(new { message = "Felaktigt användarnamn eller lösenord." });
         }
 
-        return Ok(result);
+        SetAuthCookie(result.Token);
+        return Ok(new { username = result.Username });
+    }
+
+    [HttpPost("logout")]
+    public IActionResult Logout()
+    {
+        Response.Cookies.Delete("bookapp_auth");
+        return NoContent();
+    }
+
+    private void SetAuthCookie(string token)
+    {
+        Response.Cookies.Append("bookapp_auth", token, new CookieOptions
+        {
+            HttpOnly = true,
+            SameSite = SameSiteMode.Lax,
+            Secure = false,
+            Expires = DateTimeOffset.UtcNow.AddDays(7),
+            IsEssential = true
+        });
     }
 }
