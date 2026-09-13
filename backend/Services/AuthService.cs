@@ -70,7 +70,8 @@ public class AuthService : IAuthService
             new Claim(ClaimTypes.Name, user.Username)
         };
 
-        var secret = _config["Jwt:Secret"] ?? "SuperSecretKeyForBookAppJwtAuthentication123456!";
+        var secret = _config["Jwt:Secret"]
+            ?? throw new InvalidOperationException("Jwt:Secret must be configured.");
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 

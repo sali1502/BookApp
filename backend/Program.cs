@@ -18,7 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 // Configure JWT Authentication
-var secretKey = builder.Configuration["Jwt:Secret"] ?? "SuperSecretKeyForBookAppJwtAuthentication123456!";
+var secretKey = builder.Configuration["Jwt:Secret"]
+    ?? throw new InvalidOperationException("Jwt:Secret must be configured.");
 var key = Encoding.UTF8.GetBytes(secretKey);
 
 builder.Services.AddAuthentication(options =>
