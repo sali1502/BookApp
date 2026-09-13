@@ -10,9 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add Controllers
 builder.Services.AddControllers();
 
-// Configure SQLite DbContext
+// Configure the PostgreSQL DbContext for the Render deployment.
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection") ?? "Data Source=app.db"));
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("DefaultConnection")
+        ?? throw new InvalidOperationException("ConnectionStrings:DefaultConnection must be configured.")));
 
 // Register AuthService
 builder.Services.AddScoped<IAuthService, AuthService>();
