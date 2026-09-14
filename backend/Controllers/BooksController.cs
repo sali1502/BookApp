@@ -50,7 +50,7 @@ public class BooksController : ControllerBase
         {
             Title = dto.Title,
             Author = dto.Author,
-            PublishDate = dto.PublishDate,
+            PublishDate = DateTime.SpecifyKind(dto.PublishDate, DateTimeKind.Utc),
             UserId = CurrentUserId
         };
 
@@ -72,7 +72,7 @@ public class BooksController : ControllerBase
 
         book.Title = dto.Title;
         book.Author = dto.Author;
-        book.PublishDate = dto.PublishDate;
+        book.PublishDate = DateTime.SpecifyKind(dto.PublishDate, DateTimeKind.Utc);
 
         await _context.SaveChangesAsync();
         return NoContent();
