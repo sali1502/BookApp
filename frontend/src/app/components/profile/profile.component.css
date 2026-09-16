@@ -8,7 +8,7 @@
 
 .profile-avatar {
   align-items: center;
-  background: var(--teal-color);
+  background: var(--icon-bg);
   border-radius: 50%;
   color: #ffffff;
   display: flex;

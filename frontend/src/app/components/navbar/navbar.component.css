@@ -7,5 +7,5 @@
 }
 
 .profile-link:hover {
-  color: var(--mint-color) !important;
+  color: var(--nav-hover-color) !important;
 }
