@@ -4,10 +4,10 @@
       <div class="card shadow-sm border-0">
         <div class="card-body p-4 p-sm-5">
           <div class="d-flex align-items-center justify-content-between mb-4">
-            <h3 class="fw-bold mb-0">
-              <i class="fa-solid" [class.fa-plus-circle]="!isEditMode" [class.fa-pen-to-square]="isEditMode"></i>
+            <h1 class="h3 fw-bold mb-0">
+              <i class="fa-solid" [class.fa-plus-circle]="!isEditMode" [class.fa-pen-to-square]="isEditMode" aria-hidden="true"></i>
               {{ isEditMode ? 'Redigera citat' : 'Lägg till nytt citat' }}
-            </h3>
+            </h1>
             <a routerLink="/quotes" class="btn btn-outline-secondary btn-sm">
               <i class="fa-solid fa-arrow-left me-1"></i> Tillbaka
             </a>
@@ -17,7 +17,7 @@
             <i class="fa-solid fa-circle-exclamation me-2"></i> {{ errorMessage }}
           </div>
 
-          <form (ngSubmit)="onSubmit()">
+          <form (ngSubmit)="onSubmit()" [attr.aria-busy]="isLoading">
             <div class="mb-3">
               <label for="quoteText" class="form-label fw-bold">Citat</label>
               <textarea
@@ -47,7 +47,8 @@
             <div class="d-flex justify-content-end gap-2">
               <a routerLink="/quotes" class="btn btn-secondary">Avbryt</a>
               <button type="submit" class="btn btn-primary" [disabled]="isLoading">
-                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                <span *ngIf="isLoading" class="visually-hidden">Sparar citatet...</span>
                 <i class="fa-solid fa-floppy-disk me-1" *ngIf="!isLoading"></i>
                 Spara citat
               </button>

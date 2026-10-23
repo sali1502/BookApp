@@ -12,6 +12,10 @@
   --pale-green-color: #dce5ed;
   --accent-color: #496a85;
   --accent-dark: #304b65;
+  --muted-text-color: #59636e;
+  --primary-button-text: #ffffff;
+  --bs-secondary-color: var(--muted-text-color);
+  --bs-secondary-color-rgb: 89, 99, 110;
   --bs-primary: #496a85;
   --bs-primary-rgb: 73, 106, 133;
 }
@@ -22,6 +26,10 @@
   --card-bg: #243548;
   --accent-color: #8fa9c0;
   --accent-dark: #b3c6d7;
+  --muted-text-color: #b9c5d1;
+  --primary-button-text: #172331;
+  --bs-secondary-color: var(--muted-text-color);
+  --bs-secondary-color-rgb: 185, 197, 209;
   --teal-color: #8fa9c0;
   --mint-color: #496a85;
   --pale-green-color: #344b61;
@@ -36,6 +44,28 @@ body {
   min-height: 100vh;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex="-1"]:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #26384a;
+}
+
 .card {
   background-color: var(--card-bg);
   transition: background-color 0.3s ease;
@@ -47,6 +77,7 @@ body {
 }
 
 .btn-primary {
+  --bs-btn-color: var(--primary-button-text);
   --bs-btn-bg: var(--accent-color);
   --bs-btn-border-color: var(--accent-color);
   --bs-btn-hover-bg: var(--accent-dark);
@@ -60,6 +91,7 @@ body {
 .btn-outline-primary {
   --bs-btn-color: var(--accent-color);
   --bs-btn-border-color: var(--accent-color);
+  --bs-btn-hover-color: var(--primary-button-text);
   --bs-btn-hover-bg: var(--accent-color);
   --bs-btn-hover-border-color: var(--accent-color);
 }
