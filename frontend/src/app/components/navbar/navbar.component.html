@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4" aria-label="Huvudmeny">
   <div class="container">
     <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/">
-      <i class="fa-solid fa-book-open fs-4"></i>
+      <i class="fa-solid fa-book-open fs-4" aria-hidden="true"></i>
       <span class="fw-bold">Bok & Citat</span>
     </a>
 
@@ -37,8 +37,10 @@
           style="width: 40px; height: 40px;"
           (click)="toggleTheme()"
           [title]="(isDarkMode$ | async) ? 'Växla till ljust läge' : 'Växla till mörkt läge'"
+          [attr.aria-label]="(isDarkMode$ | async) ? 'Växla till ljust läge' : 'Växla till mörkt läge'"
+          [attr.aria-pressed]="isDarkMode$ | async"
         >
-          <i class="fa-solid" [class.fa-sun]="isDarkMode$ | async" [class.fa-moon]="!(isDarkMode$ | async)"></i>
+          <i class="fa-solid" [class.fa-sun]="isDarkMode$ | async" [class.fa-moon]="!(isDarkMode$ | async)" aria-hidden="true"></i>
         </button>
 
         <ng-container *ngIf="currentUser$ | async as username; else loginBtn">

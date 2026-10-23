@@ -44,6 +44,28 @@ body {
   min-height: 100vh;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex="-1"]:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #26384a;
+}
+
 .card {
   background-color: var(--card-bg);
   transition: background-color 0.3s ease;
